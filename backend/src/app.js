@@ -19,7 +19,7 @@ app.use(coopieParser());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  return res.redirect("/login");
+  return res.redirect("/auth/login");
 });
 
 
