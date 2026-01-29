@@ -18,6 +18,11 @@ app.use(
 app.use(coopieParser());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  return res.redirect("/login");
+});
+
+
 app.use("/auth", authRoute);
 app.use("/api", chatRoute);
 
