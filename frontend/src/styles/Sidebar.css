@@ -1,0 +1,255 @@
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background: rgba(13, 17, 23, 0.9);
+  border-right: 1px solid rgba(48, 161, 224, 0.2);
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(10px);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Sidebar Header */
+.sidebar-header {
+  padding: 20px 16px;
+  border-bottom: 1px solid rgba(48, 161, 224, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 800;
+  color: #58a6ff;
+  letter-spacing: 1px;
+  font-family: "Fira Code", monospace;
+}
+
+.connection-badge {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+}
+
+.connection-badge.connected {
+  background: rgba(63, 185, 80, 0.2);
+  color: #3fb950;
+  border: 1px solid rgba(63, 185, 80, 0.3);
+}
+
+.connection-badge.disconnected {
+  background: rgba(248, 81, 73, 0.2);
+  color: #f85149;
+  border: 1px solid rgba(248, 81, 73, 0.3);
+}
+
+/* New Chat Button */
+.new-chat-btn {
+  margin: 12px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #58a6ff 0%, #1f82c2 100%);
+  border: 1px solid rgba(88, 166, 255, 0.5);
+  color: white;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: "Fira Code", monospace;
+}
+
+.new-chat-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(88, 166, 255, 0.4);
+  background: linear-gradient(135deg, #79c0ff 0%, #2b94d6 100%);
+}
+
+.plus-icon {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+/* Chat List */
+.chat-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 8px;
+}
+
+.chat-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-list::-webkit-scrollbar-thumb {
+  background: rgba(88, 166, 255, 0.2);
+  border-radius: 3px;
+}
+
+.chat-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(88, 166, 255, 0.4);
+}
+
+/* Chat Item */
+.chat-item {
+  padding: 0;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  background: rgba(22, 27, 34, 0.4);
+  border: 1px solid rgba(48, 161, 224, 0.1);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.chat-item:hover {
+  background: rgba(22, 27, 34, 0.6);
+  border-color: rgba(48, 161, 224, 0.2);
+}
+
+.chat-item.active {
+  background: rgba(88, 166, 255, 0.15);
+  border-color: rgba(88, 166, 255, 0.4);
+  box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
+}
+
+/* Chat Item Content */
+.chat-item-content {
+  flex: 1;
+  padding: 12px;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.chat-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #58a6ff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chat-preview {
+  font-size: 12px;
+  color: #8b949e;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}
+
+/* Edit Chat Input */
+.edit-chat-input {
+  width: 100%;
+  padding: 8px;
+  background: rgba(13, 17, 23, 0.8);
+  border: 1px solid #58a6ff;
+  border-radius: 4px;
+  color: #c9d1d9;
+  font-size: 13px;
+  font-family: "Fira Code", monospace;
+  outline: none;
+}
+
+.edit-chat-input:focus {
+  box-shadow: 0 0 8px rgba(88, 166, 255, 0.3);
+}
+
+/* Delete Chat Button */
+.delete-chat-btn {
+  background: none;
+  border: none;
+  color: #8b949e;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-chat-btn:hover {
+  color: #f85149;
+  transform: scale(1.15);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .logo-text {
+    font-size: 16px;
+  }
+
+  .chat-name {
+    font-size: 13px;
+  }
+
+  .chat-preview {
+    font-size: 11px;
+  }
+}
+
+.empty-state {
+  padding: 20px;
+  text-align: center;
+  color: #8b949e;
+}
+
+.empty-state p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.empty-hint {
+  font-size: 12px;
+  color: #6e7681;
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(48, 161, 224, 0.2);
+    flex-direction: row;
+  }
+
+  .sidebar-header {
+    flex-shrink: 0;
+  }
+
+  .chat-list {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .chat-item {
+    flex-shrink: 0;
+    min-width: 150px;
+  }
+}
