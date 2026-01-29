@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "https://zoro-ai-0p9n.onrender.com";
 
 export const apiClient = {
   async register(email, firstName, lastName, password) {

@@ -3,13 +3,14 @@ const app = express();
 const coopieParser = require("cookie-parser");
 const authRoute = require("./routes/auth.route");
 const chatRoute = require("./routes/chat.route");
-
+const path = require("path");
 // CORS configuration
 const cors = require("cors");
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173" ,"https://zoro-ai-0p9n.onrender.com"],
     credentials: true,
+    origin: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
@@ -17,13 +18,14 @@ app.use(
 
 app.use(coopieParser());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../public')));
 
-app.get("/", (req, res) => {
-  return res.redirect("/auth/login");
-});
 
 
 app.use("/auth", authRoute);
 app.use("/api", chatRoute);
+app.get("*name", (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+});
 
 module.exports = app;
