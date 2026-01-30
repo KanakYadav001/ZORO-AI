@@ -60,6 +60,7 @@ async function InilizedSocket(httpServer) {
         const [MessageHistory, QueueMemory] = await Promise.all([
           MessageModel.find({
             chat: userContent.chat,
+            user: socket.user._id,
           })
             .sort({ createdAt: -1 })
             .limit(20)
@@ -69,7 +70,9 @@ async function InilizedSocket(httpServer) {
           queryVectors({
             vectors: Uservector,
             limit: 5,
-            metadata: {},
+            metadata: {
+              chatId: userContent.chat,
+            },
           }),
         ]);
 
