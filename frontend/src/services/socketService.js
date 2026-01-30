@@ -48,20 +48,28 @@ class SocketService {
     }
 
     return new Promise((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
+        this.socket.off("ai-Response");
+        this.socket.off("ai-Error");
+        reject(new Error("Response timeout"));
+      }, 30000);
+
+      this.socket.once("ai-Response", (response) => {
+        clearTimeout(timeoutId);
+        this.socket.off("ai-Error");
+        resolve(response);
+      });
+
+      this.socket.once("ai-Error", (error) => {
+        clearTimeout(timeoutId);
+        this.socket.off("ai-Response");
+        reject(new Error(error.error || "AI service error"));
+      });
+
       this.socket.emit("ai-Message", {
         content,
         chat: chatId,
       });
-
-      // Listen for response
-      this.socket.once("ai-Response", (response) => {
-        resolve(response);
-      });
-
-      // Timeout after 30 seconds
-      setTimeout(() => {
-        reject(new Error("Response timeout"));
-      }, 30000);
     });
   }
 
