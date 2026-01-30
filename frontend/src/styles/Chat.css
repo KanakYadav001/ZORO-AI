@@ -38,7 +38,8 @@
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   .chat-container {
-    flex-direction: column;
+    flex-direction: row;
+    position: relative;
   }
 
   .sidebar-toggle-btn {
@@ -67,18 +68,19 @@
 
   .sidebar-wrapper {
     position: fixed;
-    left: -100%;
+    left: -280px;
     top: 0;
-    width: 100%;
-    max-width: 280px;
+    width: 280px;
     height: 100vh;
     z-index: 1999;
     transition: left 0.3s ease;
     display: block;
+    overflow-y: auto;
   }
 
   .sidebar-wrapper.open {
     left: 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
   }
 
   .sidebar-wrapper.open::after {
@@ -96,7 +98,8 @@
 @media (max-width: 480px) {
   .chat-container {
     height: 100vh;
-    flex-direction: column;
+    flex-direction: row;
+    position: relative;
   }
 
   .sidebar-toggle-btn {
@@ -108,7 +111,32 @@
   }
 
   .sidebar-wrapper {
+    position: fixed;
+    left: -240px;
+    top: 0;
+    width: 240px;
     max-width: 240px;
+    height: 100vh;
+    z-index: 1999;
+    transition: left 0.3s ease;
+    display: block;
+    overflow-y: auto;
+  }
+
+  .sidebar-wrapper.open {
+    left: 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .sidebar-wrapper.open::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 240px;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
   }
 
   .no-chat {
