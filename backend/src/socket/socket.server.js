@@ -103,7 +103,7 @@ async function InilizedSocket(httpServer) {
 
         const [ModelMessage, ModelVector] = await Promise.all([
           MessageModel.create({
-            user: socket.user.id,
+            user: socket.user._id,
             chat: userContent.chat,
             content: response,
             role: "model",
@@ -112,7 +112,7 @@ async function InilizedSocket(httpServer) {
         ]);
 
         await upsertVectors({
-          Id: ModelMessage.id,
+          Id: ModelMessage._id,
           vectors: ModelVector,
           metadata: {
             chatId: userContent.chat,
