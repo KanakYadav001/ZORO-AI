@@ -16,6 +16,7 @@ function Chat() {
   const [editingName, setEditingName] = useState('');
   const [socketConnected, setSocketConnected] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Initialize socket connection and fetch chats
   useEffect(() => {
@@ -164,19 +165,31 @@ function Chat() {
 
   return (
     <div className="chat-container">
-      <Sidebar 
-        chats={chats}
-        activeChat={activeChat}
-        onSelectChat={setActiveChat}
-        onCreateChat={handleCreateChat}
-        onDeleteChat={handleDeleteChat}
-        onEditChat={handleStartEdit}
-        editingId={editingId}
-        editingName={editingName}
-        onEditingNameChange={setEditingName}
-        onSaveName={handleSaveName}
-        socketConnected={socketConnected}
-      />
+      <button 
+        className="sidebar-toggle-btn"
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+        title="Toggle Sidebar"
+      >
+        ☰
+      </button>
+      <div className={`sidebar-wrapper ${sidebarOpen ? 'open' : ''}`}>
+        <Sidebar 
+          chats={chats}
+          activeChat={activeChat}
+          onSelectChat={(id) => {
+            setActiveChat(id);
+            setSidebarOpen(false);
+          }}
+          onCreateChat={handleCreateChat}
+          onDeleteChat={handleDeleteChat}
+          onEditChat={handleStartEdit}
+          editingId={editingId}
+          editingName={editingName}
+          onEditingNameChange={setEditingName}
+          onSaveName={handleSaveName}
+          socketConnected={socketConnected}
+        />
+      </div>
       {activeChat ? (
         <ChatWindow 
           activeChat={activeChat}

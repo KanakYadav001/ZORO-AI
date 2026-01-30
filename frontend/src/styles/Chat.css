@@ -10,6 +10,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  position: relative;
+}
+
+/* Sidebar Wrapper */
+.sidebar-wrapper {
+  display: contents;
+}
+
+/* Sidebar Toggle Button - Hidden by default */
+.sidebar-toggle-btn {
+  display: none;
 }
 
 /* No Chat Selected */
@@ -29,12 +40,75 @@
   .chat-container {
     flex-direction: column;
   }
+
+  .sidebar-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 2000;
+    width: 40px;
+    height: 40px;
+    background: rgba(88, 166, 255, 0.1);
+    border: 1px solid rgba(88, 166, 255, 0.3);
+    color: #58a6ff;
+    border-radius: 6px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .sidebar-toggle-btn:hover {
+    background: rgba(88, 166, 255, 0.2);
+    border-color: rgba(88, 166, 255, 0.5);
+  }
+
+  .sidebar-wrapper {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    max-width: 280px;
+    height: 100vh;
+    z-index: 1999;
+    transition: left 0.3s ease;
+    display: block;
+  }
+
+  .sidebar-wrapper.open {
+    left: 0;
+  }
+
+  .sidebar-wrapper.open::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 280px;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
 }
 
 @media (max-width: 480px) {
   .chat-container {
-    height: calc(100vh - 70px);
+    height: 100vh;
     flex-direction: column;
+  }
+
+  .sidebar-toggle-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+    top: 8px;
+    left: 8px;
+  }
+
+  .sidebar-wrapper {
+    max-width: 240px;
   }
 
   .no-chat {
@@ -42,3 +116,7 @@
     padding: 16px;
   }
 }
+
+@media (min-width: 769px) {
+  .sidebar-wrapper {
+    display: contents;
