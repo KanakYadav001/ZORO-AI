@@ -20,4 +20,25 @@
   justify-content: center;
   color: #8b949e;
   font-size: 16px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .chat-container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .chat-container {
+    height: calc(100vh - 70px);
+    flex-direction: column;
+  }
+
+  .no-chat {
+    font-size: 14px;
+    padding: 16px;
+  }
 }
