@@ -82,7 +82,7 @@
   }
 
   .sidebar-wrapper.open::after {
-    content: '';
+    content: "";
     position: fixed;
     top: 0;
     left: 280px;
@@ -120,3 +120,5 @@
 @media (min-width: 769px) {
   .sidebar-wrapper {
     display: contents;
+  }
+}
